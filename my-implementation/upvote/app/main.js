@@ -23,6 +23,19 @@ const upvoteApp = {
         }
     },
 
+    // methods 属性用于存储和应用实例绑定的方法
+    methods: {
+        // 在 Vue 中，当状态更新时会使视图 View 更新，因此当数据变化后，
+        // 投票信息显示的数据和位置也会发生变化
+        upvote(submissionId) {
+            const submission = this.submissions.find(
+                (sub) => sub.id === submissionId
+            );
+            submission.votes++;
+        }
+
+    },
+
 };
 
 Vue.createApp(upvoteApp).mount("#app"); // 创建 Vue 应用并挂载到特定标签上

@@ -70,7 +70,8 @@
                 </div>
 
                 <div class="media-right">
-                    <span class="icon is-small">
+                    <!-- 使用 v-on:click 为元素创建点击事件，点击后运行其中内容 -->
+                    <span class="icon is-small"  v-on:click="upvote(submission.id)">
                         <i class="fa fa-chevron-up"></i>
                         <!-- 数据绑定： -->
                         <strong class="has-text-info">{{ submission.votes }}</strong>
