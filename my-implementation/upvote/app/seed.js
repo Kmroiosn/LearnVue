@@ -1,3 +1,8 @@
+//
+// 解释：
+// Seed 的值为 { submissions: [数据...] }
+// 这个数据是通过临时创建匿名函数并调用获得的
+//
 window.Seed = (function () {
     const submissions = [
       {
@@ -39,5 +44,6 @@ window.Seed = (function () {
     ];
   
     return { submissions: submissions };
-  }());
+    //调用在下面一行！
+  }()); // <-- 里面那个括号！
   
