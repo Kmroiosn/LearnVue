@@ -3,6 +3,57 @@
 // <script src="http://unpkg.com/vue@next">
 ///
 
+// 创建投票信息模版
+const submissionComponent = {
+    template:  `
+    <div style="display: flex; width: 100%">
+        <figure class="media-left">
+            <img class="image is-64x64"
+                v-bind:src="submission.submissionImage">
+        </figure>
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>
+                        <a v-bind:href="submission.url" class="has-text-info">
+                            {{ submission.title }}
+                        </a>
+                        <span class="tag is-small">#{{ submission.id }}</span>
+                    </strong>
+                    <br>
+                    {{ submission.description }}
+                    <br>
+                    <small class="is-size-7">
+                        Submitted by:
+                        <img class="image is-24x24"
+                            v-bind:src="submission.avatar">
+                    </small>
+                </p>
+            </div>
+        </div>
+        <div class="media-right">
+            <span class="icon is-small" v-on:click="upvote(submission.id)">
+                <i class="fa fa-chevron-up"></i>
+                <strong class="has-text-info">{{ submission.votes }}</strong>
+            </span>
+        </div>
+    </div>`,
+
+    // 组件需要使用父组件提供的数据时需要显示声明
+    props: ["submission", "submissions"],
+
+    methods: {
+        upvote(submissionId) {
+            const submission = this.submissions.find(
+                sub => sub.id === submissionId
+            );
+
+            submission.votes++;
+        }
+    }
+};
+
+
 // 应用实例也可以返回需要在视图里处理的数据
 // 但必须声明在这个应用变量中的 data() 方法里。
 const upvoteApp = {
@@ -23,17 +74,10 @@ const upvoteApp = {
         }
     },
 
-    // methods 属性用于存储和应用实例绑定的方法
-    methods: {
-        // 在 Vue 中，当状态更新时会使视图 View 更新，因此当数据变化后，
-        // 投票信息显示的数据和位置也会发生变化
-        upvote(submissionId) {
-            const submission = this.submissions.find(
-                (sub) => sub.id === submissionId
-            );
-            submission.votes++;
-        }
-
+    components: {
+        // 将上面的投票信息组件注册进应用实例中
+        // 在 HTML 中通过 submission-component 标签即可使用
+        "submission-component": submissionComponent,
     },
 
 };
