@@ -36,7 +36,9 @@
                 <article class="media" v-for="(submission, index) in submissions" :key="index"> 
                 <article class="media" v-for="submission in submissions" v-bind:key="submission.id"> 
             -->
-            <article class="media" v-for="(submission, index) in submissions" :key="index">    
+
+            <!-- 使用 sortedSubmissions 方法返回的整理过的内容 -->
+            <article class="media" v-for="(submission, index) in sortedSubmissions" :key="index">    
                 <figure class="media-left">
                     <!-- 数据绑定：数据的来源在应用变量的 data() 方法中 -->
                     <!-- 数据绑定：使用 v-bind 对 img 的 src 属性内容进行绑定 -->

@@ -13,6 +13,16 @@ const upvoteApp = {
         }
     },
 
+    // 让投票信息按票数顺序摆放，需要将数据进行排序
+    // computed 属性用于处理视图中展示的需要“复杂”计算的信息
+    computed: {
+
+        // 引入一个属性给数据排序
+        sortedSubmissions() {
+            return this.submissions.sort((a, b) => b.votes - a.votes);
+        }
+    },
+
 };
 
 Vue.createApp(upvoteApp).mount("#app"); // 创建 Vue 应用并挂载到特定标签上
