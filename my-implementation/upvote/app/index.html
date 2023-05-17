@@ -23,11 +23,20 @@
         <h2 class="title has-text-centered dividing-header">UpVote!</h2>
 
         <div class="section">
-            <article class="media">
+            <!-- article 标签是一个投票信息的模板 -->
+            <!-- v-for 指令：通过v-for指令对数据中的数组进行循环获取，并填充到模板中 -->
+            <!-- 使用方式：v-for="item in items" -->
+            <!-- 将 items 数组中的每一个数据赋值给 item，以便在此标签内使用 -->
+            <!-- 你也可以：v-for="(item, index) in items" 加上 :key="index" 来获取索引 -->
+            <!-- 一些例子： -->
+            <!-- <article class="media" v-for="submission in submissions"> -->
+            <!-- <article class="media" v-for="(submission, index) in submissions" :key="index"> -->
+            <!-- <article class="media" v-for="submission in submissions" v-bind:key="submission.id"> -->
+            <article class="media" v-for="(submission, index) in submissions" :key="index">    
                 <figure class="media-left">
                     <!-- 数据绑定：数据的来源在应用变量的 data() 方法中 -->
                     <!-- 数据绑定：使用 v-bind 对 img 的 src 属性内容进行绑定 -->
-                    <img class="image is-64x64" v-bind:src="submissions[0].submissionImage">
+                    <img class="image is-64x64" v-bind:src="submission.submissionImage">
                 </figure>
                 
                 <div class="media-content">
@@ -35,20 +44,20 @@
                         <p>
                             <strong>
                                 <!-- 数据绑定：使用 v-bind 对 a 的 href 属性内容进行绑定 -->
-                                <a v-bind:href="submissions[0].url" class="has-text-info">
+                                <a v-bind:href="submission.url" class="has-text-info">
                                     <!-- 数据绑定：文本内容使用 Mustache 语法对应用变量的数据进行绑定 -->
-                                    {{ submissions[0].title }}
+                                    {{ submission.title }}
                                 </a>
-                                <span class="tag is-small">#{{ submissions[0].id }}</span>
+                                <span class="tag is-small">#{{ submission.id }}</span>
                             </strong>
                             <br>
                             <!-- 数据绑定： -->
-                            {{ submissions[0].description }}
+                            {{ submission.description }}
                             <br>
                             <small class="is-size-7">
                                 Submitted by:
                                 <!-- 数据绑定： -->
-                                <img v-bind:src="submissions[0].avatar" class="image is-24x24">
+                                <img v-bind:src="submission.avatar" class="image is-24x24">
                             </small>
                         </p>
                     </div>
@@ -58,7 +67,7 @@
                     <span class="icon is-small">
                         <i class="fa fa-chevron-up"></i>
                         <!-- 数据绑定： -->
-                        <strong class="has-text-info">{{ submissions[0].votes }}</strong>
+                        <strong class="has-text-info">{{ submission.votes }}</strong>
                     </span>
                 </div>
             </article>
