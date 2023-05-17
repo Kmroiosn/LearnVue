@@ -25,22 +25,30 @@
         <div class="section">
             <article class="media">
                 <figure class="media-left">
-                    <img src="../public/images/submissions/image-yellow.png" class="image is-64x64">
+                    <!-- 数据绑定：数据的来源在应用变量的 data() 方法中 -->
+                    <!-- 数据绑定：使用 v-bind 对 img 的 src 属性内容进行绑定 -->
+                    <img class="image is-64x64" v-bind:src="submissions[0].submissionImage">
                 </figure>
                 
                 <div class="media-content">
                     <div class="content">
                         <p>
                             <strong>
-                                <a href="#" class="has-text-info">Yellow Pail</a>
-                                <span class="tag is-small">#4</span>
+                                <!-- 数据绑定：使用 v-bind 对 a 的 href 属性内容进行绑定 -->
+                                <a v-bind:href="submissions[0].url" class="has-text-info">
+                                    <!-- 数据绑定：文本内容使用 Mustache 语法对应用变量的数据进行绑定 -->
+                                    {{ submissions[0].title }}
+                                </a>
+                                <span class="tag is-small">#{{ submissions[0].id }}</span>
                             </strong>
                             <br>
-                            On-demand sand castle construction expertise.
+                            <!-- 数据绑定： -->
+                            {{ submissions[0].description }}
                             <br>
                             <small class="is-size-7">
                                 Submitted by:
-                                <img src="../public/images/avatars/daniel.jpg" class="image is-24x24">
+                                <!-- 数据绑定： -->
+                                <img v-bind:src="submissions[0].avatar" class="image is-24x24">
                             </small>
                         </p>
                     </div>
@@ -49,7 +57,8 @@
                 <div class="media-right">
                     <span class="icon is-small">
                         <i class="fa fa-chevron-up"></i>
-                        <strong class="has-text-info">10</strong>
+                        <!-- 数据绑定： -->
+                        <strong class="has-text-info">{{ submissions[0].votes }}</strong>
                     </span>
                 </div>
             </article>
