@@ -4,7 +4,7 @@
             <span class="has-text-centered details">{{ event.details }}</span>
             <div class="has-text-centered icons">
                 <i class="fa fa-pencil-square edit-icon"></i>
-                <i class="fa fa-trash-o delete-icon"></i>
+                <i class="fa fa-trash delete-icon"></i>
             </div>
         </div>
     </div>

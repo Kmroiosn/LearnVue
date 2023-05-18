@@ -1,6 +1,6 @@
 <template>
     <div class="day column">
-        <div class="day-banner has-text-white has-text-centered">{{ day.abbvTtile }}</div>
+        <div class="day-banner has-text-white has-text-centered">{{ day.abbvTitle }}</div>
         <div class="day-details">
             <div class="day-number">{{ day.id }}</div>
             <CalendarEvent v-for="(event, index) in day.events" :key="index" :event="event" :day="day" />
