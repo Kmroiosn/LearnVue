@@ -1,8 +1,8 @@
 <template>
     <div class="day column">
-        <div class="day-banner has-text-white has-text-centered">Mon</div>
+        <div class="day-banner has-text-white has-text-centered">{{ day.abbvTtile }}</div>
         <div class="day-details">
-            <div class="day-number">1</div>
+            <div class="day-number">{{ day.id }}</div>
             <div class="day-event" style="background-color: rgb(153, 255, 153)">
                 <div>
                     <span class="has-text-centered details">Get Groceries</span>
