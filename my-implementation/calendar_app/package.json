@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.3.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.40.0",
+    "eslint-plugin-vue": "^9.13.0",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "vue": "^3.3.2"
+  }
+}
