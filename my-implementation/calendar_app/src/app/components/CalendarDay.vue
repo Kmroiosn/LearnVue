@@ -3,30 +3,24 @@
         <div class="day-banner has-text-white has-text-centered">{{ day.abbvTtile }}</div>
         <div class="day-details">
             <div class="day-number">{{ day.id }}</div>
-            <div class="day-event" style="background-color: rgb(153, 255, 153)">
-                <div>
-                    <span class="has-text-centered details">Get Groceries</span>
-                    <div class="has-text-centered icons"><i class="fa fa-pencil-square edit-icon"></i>
-                        <i class="fa fa-trash-o delete-icon"></i>
-                    </div>
-                </div>
-            </div>
+            <CalendarEvent v-for="(event, index) in day.events" :key="index" :event="event" :day="day" />
         </div>
     </div>
 </template>
 
 <script>
+import CalendarEvent from './CalendarEvent.vue';
+
 export default {
     name: "CalendarDay",
     props: ["day"],
+    components: {
+        CalendarEvent
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-.column {
-    padding: 0 0 0 0;
-}
-
 .day {
     background-color: #4A4A4A;
     color: #FFF;
@@ -51,33 +45,6 @@ export default {
 
     .day-details {
         padding: 10px;
-
-        .day-event {
-            margin-top: 6px;
-            margin-bottom: 6px;
-            display: block;
-            color: #4C4C4C;
-            padding: 5px;
-
-            .details {
-                display: block;
-            }
-
-            .icons .fa {
-                padding: 0 2px;
-            }
-
-            input {
-                background: none;
-                border: 0;
-                border-bottom: 1px solid #FFF;
-                width: 100%;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
     }
 
     &:last-child {
