@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<!-- CalendarWeek 内容 -->
-		<div id="calendar-week" class="container">
+		<div id="calendar-week">
 			<div class="columns is-mobile">
 				<!-- CalendarDay 内容 -->
 				<div class="day column">
@@ -99,10 +99,10 @@ body,
 	background: #6e6e6e;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	-webkit-align-items: center;
-	justify-content: center;
+	align-items: center;
 	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 #calendar-week {
