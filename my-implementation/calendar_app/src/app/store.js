@@ -14,5 +14,9 @@ export const store = {
         this.state.data.map((day) => {
             day.active = day.id === dayId ? true : false;
         });
-    }
+    },
+    submitEvent(eventDetails) {
+        const activeDay = this.getActiveDay();
+        activeDay.events.push({'details': eventDetails, "edit": false});
+    },
 }
