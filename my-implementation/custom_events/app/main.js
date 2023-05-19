@@ -9,6 +9,8 @@ const inputComponent = {
             input: "",
         };
     },
+    // 类似 props, 组件可以显示地通过 emits 来声明它将触发的事件
+    emits: ["add-note"],
     methods: {
         // 在组件的模版表达式中可以直接使用 $emit 方法触发自定义事件
         // 例：@click="$emit('EventName')"
@@ -34,6 +36,13 @@ const app = {
     },
     components: {
         'input-component': inputComponent
+    },
+    methods: {
+        // index.html 中的 input-component 监听到 add-note 事件后调用该方法
+        addNote(event) {
+            this.notes.push(event.note);
+            this.timestamps.push(event.timestamp);
+        }
     },
 };
 
