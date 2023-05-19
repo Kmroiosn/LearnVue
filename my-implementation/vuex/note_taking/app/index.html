@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Events</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="notes-section">
+            <div class="columns">
+                <div class="column has-text-centered">
+                    <strong>Notes</strong>
+                    <!-- 插入笔记信息 -->
+                    <div class="notes" v-for="note in notes">
+                        {{ note }}
+                    </div>
+                </div>
+                <div class="column has-text-centered">
+                    <strong>Timestamp</strong>
+                    <!-- 插入时间戳信息 -->
+                    <div class="timestamps" v-for="timestamp in timestamps">
+                        {{ timestamp }}
+                    </div>
+                </div>
+            </div>
+            <!-- 使用@event-name="funcName"来监听特定事件 -->
+            <!-- <input-component @add-note="addNote" :placeholder="placeholder"></input-component> -->
+
+            <!-- 使用 mitt 的事件总线， 用 .on 方法监听 -->
+            <input-component :placeholder="placeholder"></input-component>
+
+        </div>
+
+        <note-count-component></note-count-component>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Vuex 状态管理库，是 Flux 的一种实现 -->
+    <script src="https://unpkg.com/vuex@next"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
