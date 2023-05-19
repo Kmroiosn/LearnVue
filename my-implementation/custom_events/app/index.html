@@ -29,11 +29,16 @@
                 </div>
             </div>
             <!-- 使用@event-name="funcName"来监听特定事件 -->
-            <input-component @add-note="addNote" :placeholder="placeholder"></input-component>
+            <!-- <input-component @add-note="addNote" :placeholder="placeholder"></input-component> -->
+
+            <!-- 使用 mitt 的事件总线， 用 .on 方法监听 -->
+            <input-component :placeholder="placeholder"></input-component>
+
         </div>
     </div>
     
     <script src="https://unpkg.com/vue@next"></script>
+    <!-- mitt, the event emitter library， 用于创建事件总线 (Event bus) -->
     <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
     <script src="./main.js"></script>
 </body>

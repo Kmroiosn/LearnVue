@@ -1,3 +1,6 @@
+// 使用 mitt 创建 EventBus
+const emitter = mitt();
+
 const inputComponent = {
     template: `<input class="input is-small" 
                 type="text" :placeholder="placeholder"
@@ -17,7 +20,13 @@ const inputComponent = {
         // 或者像下面一样，在方法调用中使用 this.$emit('EventName', ...) 来触发自定义事件
         monitorEnterKey() {
             // Vue 的自定义事件触发
-            this.$emit("add-note", {
+            // this.$emit("add-note", {
+            //     note: this.input,
+            //     timestamp: new Date().toLocaleString(),
+            // });
+            
+            // 使用 mitt 创建的事件总线触发
+            emitter.emit('add-note', {
                 note: this.input,
                 timestamp: new Date().toLocaleString(),
             });
@@ -43,6 +52,11 @@ const app = {
             this.notes.push(event.note);
             this.timestamps.push(event.timestamp);
         }
+    },
+    created() {
+        // 因为使用 mitt 的事件总线，不能直接使用 @event-name="..."
+        // 所以在 app 创建时建立 mitt 的监听
+        emitter.on('add-note', (event) => this.addNote(event));
     },
 };
 
