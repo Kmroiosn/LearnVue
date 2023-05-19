@@ -33,7 +33,28 @@ const inputComponent = {
             this.input = '';
         },
     },
-}
+};
+
+// 有两种方式实现这个组件的功能：
+//  - 在应用实例中定义数据属性 noteCount，通过父子传递以 props 的形式给到 note-count-component
+//  - 直接通过事件监听让 noteCountComponent 组件内的 noteCount 属性自增
+// 后者用事件总线会更方便，因为 noteCountComponent 与 inputComponent 同级，无法自下而上地传递$emit信号。
+// 需要在应用实例中再传递数据。
+const noteCountComponent = {
+    template: `
+        <div class="note-count">
+            Note count:
+            <strong> {{ noteCount }} </strong>
+        </div>`,
+    data() {
+        return {
+            noteCount: 0,
+        };
+    },
+    created() {
+        emitter.on('add-note', event => this.noteCount++);
+    },
+};
 
 const app = {
     data() {
@@ -44,7 +65,8 @@ const app = {
         };
     },
     components: {
-        'input-component': inputComponent
+        'input-component': inputComponent,
+        'note-count-component': noteCountComponent,
     },
     methods: {
         // index.html 中的 input-component 监听到 add-note 事件后调用该方法
