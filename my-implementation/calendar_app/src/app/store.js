@@ -19,4 +19,27 @@ export const store = {
         const activeDay = this.getActiveDay();
         activeDay.events.push({'details': eventDetails, "edit": false});
     },
+    editEvent(dayId, eventDetails) {
+        this.resetEditOfAllEvents();
+        const eventObj = this.getEventObj(dayId, eventDetails);
+        eventObj.edit = true;
+    },
+    resetEditOfAllEvents() {
+        this.state.data.map((dayObj) => {
+            dayObj.events.map((event) => {
+                event.edit = false;
+            })
+        });
+    },
+    updateEvent(dayId, originalEventDetails, newEventDetails) {
+        // 找到特定事件
+        const eventObj = this.getEventObj(dayId, originalEventDetails);
+        // 将事件细节修改后将edit改为false
+        eventObj.details = newEventDetails;
+        eventObj.edit = false;
+    },
+    getEventObj(dayId, eventDetails) {
+        const dayObj = this.state.data.find((day) => day.id === dayId);
+        return dayObj.events.find((event) => event.details === eventDetails);
+    }
 }
