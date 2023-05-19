@@ -16,27 +16,18 @@
                 <div class="column has-text-centered">
                     <strong>Notes</strong>
                     <!-- 插入笔记信息 -->
-                    <div class="notes" v-for="note in notes">
-                        {{ note }}
-                    </div>
+
                 </div>
                 <div class="column has-text-centered">
                     <strong>Timestamp</strong>
                     <!-- 插入时间戳信息 -->
-                    <div class="timestamps" v-for="timestamp in timestamps">
-                        {{ timestamp }}
-                    </div>
+
                 </div>
             </div>
-            <!-- 使用@event-name="funcName"来监听特定事件 -->
-            <!-- <input-component @add-note="addNote" :placeholder="placeholder"></input-component> -->
-
-            <!-- 使用 mitt 的事件总线， 用 .on 方法监听 -->
-            <input-component :placeholder="placeholder"></input-component>
+            
+            <input-component></input-component>
 
         </div>
-
-        <note-count-component></note-count-component>
     </div>
     
     <script src="https://unpkg.com/vue@next"></script>
