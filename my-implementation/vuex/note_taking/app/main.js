@@ -22,9 +22,10 @@ const actions = {
     // 它允许我们使用 context.state 访问状态，
     // 同时访问 context.getters 以及用 context.commit 调用和提交 Mutations
     addNote(context, payload) {
+        // Store 中的 Actions 由 store.dispatch('nameOfAction', payload) 调度
         context.commit('ADD_NOTE', payload);
     },
-    addTimeStamp(context, payload) {
+    addTimestamp(context, payload) {
         context.commit('ADD_TIMESTAMP', payload);
     },
 };
@@ -47,15 +48,40 @@ const store = Vuex.createStore({
 
 
 const inputComponent = {
-    template: `<input placeholder='Enter a note' class="input is-small" type="text" />`,
-    
+    template: `<input
+        placeholder='Enter a note'
+        class="input is-small" type="text" 
+        v-model="input"
+        @keyup.enter="monitorEnterKey"
+        />`,
+    data() {
+        return {
+            input: '',
+        };
+    },
+    methods: {
+        monitorEnterKey() {
+            // Store 中的 Actions 由 store.dispatch('nameOfAction', payload) 调度，
+            this.$store.dispatch('addNote', this.input);
+            this.$store.dispatch('addTimestamp', new Date().toLocaleString());
+            this.input = '';
+        },
+    },
+  
 };
 
 const app = Vue.createApp({
+    computed: {
+        notes() {
+            return this.$store.getters.getNotes;
+        },
+        timestamps() {
+            return this.$store.getters.getTimestamps;
+        }
+    },
     components: {
         'input-component': inputComponent,
     },
-    
 });
 
 // 将 Vuex Store 注入 Vue 应用实例
