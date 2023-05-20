@@ -1,0 +1,51 @@
+{
+  "name": "shopping_cart",
+  "description": "Project for shopping",
+  "version": "0.1.0",
+  "private": "true",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run serve\"",
+    "server": "node server",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "author": "Kmroiosn",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "core-js": "^3.30.2",
+    "vue": "^3.3.4",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.21.8",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-vuex": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.3.4",
+    "concurrently": "^8.0.1",
+    "eslint": "^8.40.0",
+    "eslint-plugin-vue": "^9.13.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
