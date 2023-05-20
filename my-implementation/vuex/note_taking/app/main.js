@@ -38,10 +38,11 @@ const getters = {
 
 // Vuex Store: 通过 Vuex Store 获取上下文 context
 const store = Vuex.createStore({
-    state,
-    mutations,
-    actions,
-    getters
+    // ES6 中可以用键值对创建对象
+    state: state,
+    mutations: mutations,
+    actions: actions,
+    getters: getters,
 });
 
 
@@ -50,11 +51,13 @@ const inputComponent = {
     
 };
 
-const app = {
+const app = Vue.createApp({
     components: {
         'input-component': inputComponent,
     },
     
-};
+});
 
-Vue.createApp(app).mount('#app');
+// 将 Vuex Store 注入 Vue 应用实例
+app.use(store);
+app.mount('#app');
