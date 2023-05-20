@@ -62,6 +62,8 @@ const inputComponent = {
     methods: {
         monitorEnterKey() {
             // Store 中的 Actions 由 store.dispatch('nameOfAction', payload) 调度，
+            // 直接用 store.dispatch 并不引用注入在应用中的 Store
+            // 使用 this.$store 获取绑定在应用实例中的 Vuex Store
             this.$store.dispatch('addNote', this.input);
             this.$store.dispatch('addTimestamp', new Date().toLocaleString());
             this.input = '';
