@@ -21,7 +21,8 @@
         </p>
       </div>
     </ul>
-    <button :disabled="!cartItems.length" class="button is-primary">
+    <button :disabled="!cartItems.length" class="button is-primary"
+      @click="checkoutCart()">
       Checkout (<span class="has-text-weight-bold">${{ cartTotal }}</span>)
     </button>
   </div>
@@ -40,7 +41,7 @@ export default {
     this.$store.dispatch('getCartItems');
   },
   methods: {
-    ...mapActions(['removeAllCartItems']),
+    ...mapActions(['removeAllCartItems', 'checkoutCart']),
   },
   components: {
     CartListItem

@@ -3,13 +3,17 @@ import axios from 'axios';
 import * as types from './mutation-types';
 
 const state = {
-    cartItems: []
+    cartItems: [],
+    checkout: false,
 };
 
 const mutations = {
     [types.UPDATE_CART_ITEMS](state, payload) {
         state.cartItems = payload;
     },
+    [types.CHECKOUT_CART](state) {
+        state.checkout = true;
+    }
 };
 
 const actions = {
@@ -33,6 +37,11 @@ const actions = {
             commit(types.UPDATE_CART_ITEMS, response.data);
         });
     },
+    checkoutCart({ commit }) {
+        axios.post('/api/cart/checkout').then(() => {
+            commit(types.CHECKOUT_CART);
+        });
+    }
 };
 
 const getters = {
