@@ -29,6 +29,9 @@
 </template>
 
 <script>
+// Vuex提供 mapGetters，避免连续的 this.$store.getters 引用
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ProductList',
   // 创建组件时从服务器获取商品信息
@@ -37,11 +40,12 @@ export default {
     this.$store.dispatch("getProductItems");
   },
   computed: {
-    productItems() {
-      return this.$store.getters.productItems;
-    },
+    ...mapGetters([
+      // 将 this.$store.getters.productItems 映射为 this.productItems
+      "productItems",
+    ]),
   },
-}
+};
 </script>
 
 <style scoped>
