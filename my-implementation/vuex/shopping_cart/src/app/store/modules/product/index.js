@@ -1,10 +1,27 @@
-const state = {};
+import axios from 'axios';
 
-const mutations = {};
+const state = {
+    productItems: [],
+};
 
-const actions = {};
+const mutations = {
+    UPDATE_PRODUCT_ITEMS(state, payload) {
+        state.productItems = payload;
+    },
+};
 
-const getters = {};
+const actions = {
+    // ES6 destructuring, 直接使用 context.commit
+    getProductItems({ commit }) {
+        axios.get('/api/products').then(response => {
+            commit('UPDATE_PRODUCT_ITEMS', response.data)
+        });
+    },
+};
+
+const getters = {
+    productItems: state => state.productItems
+};
 
 const productModule = {
     state,
