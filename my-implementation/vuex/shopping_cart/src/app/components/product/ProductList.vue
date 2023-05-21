@@ -31,6 +31,16 @@
 <script>
 export default {
   name: 'ProductList',
+  // 创建组件时从服务器获取商品信息
+  created() {
+    // 从 $store 中调度 actions
+    this.$store.dispatch("getProductItems");
+  },
+  computed: {
+    productItems() {
+      return this.$store.getters.productItems;
+    },
+  },
 }
 </script>
 
